@@ -2,7 +2,7 @@
 
 1. install packages with pipenv: `pipenv install`
 
-2. Get the Google API `credentials.json` and `token.json` for your online spreadsheet
+2. Get the Google API `credentials.json` for your online spreadsheet
 
 3. Add the spreadsheet ID to your local env / server `SPREADSHEET_ID` variable
 
