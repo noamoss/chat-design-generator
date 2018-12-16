@@ -2,6 +2,7 @@ from __future__ import print_function
 from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
+from oauth2client.client import OAuth2WebServerFlow
 import datetime, sys, copy, os
 from path import Path
 from dotenv import load_dotenv
@@ -19,7 +20,6 @@ SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 # The ID and range of a sample spreadsheet.
 SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID")
 CELLS_RANGE = 'A2:C500'
-GOOGLE_DOC = os.environ.get("GOOGLE_DOC")
 CLIEND_ID = os.environ.get("CLIENT_ID")
 CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 
@@ -36,8 +36,6 @@ def load_data_from_google_spreadsheet():
         flow = OAuth2WebServerFlow(client_id=CLIENT_ID,
                            client_secret=CLIENT_SECRET,
                            scope=SCOPES)
-
-        client.flow_from_clientsecrets(GOOGLE_DOC, SCOPES)
         creds = tools.run_flow(flow, store)
     service = build('sheets', 'v4', http=creds.authorize(Http()))
 
