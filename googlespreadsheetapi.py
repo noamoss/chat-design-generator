@@ -20,7 +20,7 @@ SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 # The ID and range of a sample spreadsheet.
 SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID")
 CELLS_RANGE = 'A2:C500'
-CLIEND_ID = os.environ.get("CLIENT_ID")
+CLIENT_ID = os.environ.get("CLIENT_ID")
 CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 
 def load_data_from_google_spreadsheet():
