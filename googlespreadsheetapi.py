@@ -121,8 +121,8 @@ def load_data_from_google_spreadsheet():
             all_data[i]["talker"] = talker
             all_data[i]["chatmate"] = chatmate
 
-    for i in range(0, len(all_data)):
-        if "talker" in all_data[i] and "chatmate" in all_data[i]:
-            all_data[i]["other_users"] = [user for user in all_users if (user["username"] != all_data[i]["talker"]["username"] and user["username"] != all_data[i]["chatmate"]["username"])]
+        for i in range(0, len(all_data)):
+            if "talker" in all_data[i] and "chatmate" in all_data[i]:
+                all_data[i]["other_users"] = [user for user in all_users if (user["username"] != all_data[i]["talker"]["username"] and user["username"] != all_data[i]["chatmate"]["username"])]
 
     return(all_data)
