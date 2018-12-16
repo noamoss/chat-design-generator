@@ -20,6 +20,8 @@ SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID")
 CELLS_RANGE = 'A2:C500'
 GOOGLE_DOC = os.environ.get("GOOGLE_DOC")
+CLIEND_ID = os.environ.get("CLIENT_ID")
+CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 
 def load_data_from_google_spreadsheet():
     """Shows basic usage of the Sheets API.
@@ -31,7 +33,11 @@ def load_data_from_google_spreadsheet():
     store = file.Storage('token.json')
     creds = store.get()
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets(GOOGLE_DOC, SCOPES)
+        flow = OAuth2WebServerFlow(client_id=CLIENT_ID,
+                           client_secret=CLIENT_SECRET,
+                           scope=SCOPES)
+
+        client.flow_from_clientsecrets(GOOGLE_DOC, SCOPES)
         creds = tools.run_flow(flow, store)
     service = build('sheets', 'v4', http=creds.authorize(Http()))
 
